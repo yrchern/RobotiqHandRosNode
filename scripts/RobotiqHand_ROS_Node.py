@@ -22,6 +22,8 @@ class RobotiqHandNode():
         self.addr = addr
         self.port = port
         self.hand = RobotiqHand()
+        rospy.loginfo("Waiting for 30 seconds for ros_control to start on the robot")
+        rospy.sleep(30.0)
         self.hand.connect(self.addr, int(self.port))
         self.hand.reset()
         self.hand.activate()
