@@ -1,6 +1,7 @@
 # RobotiqHandRosNode
 
 This is a ROS node to control Robotiq Gripper based on RobotiqHand (https://github.com/TechMagicKK/RobotiqHand).
+You can use this to control your Robotiq Gripper connected to robot's wrist.
 
 ## Requirements ##
 
@@ -14,7 +15,7 @@ In order to use RobotiqHandRosNode, you need to install [Universal_Robots_ROS_Dr
 
 ## Usage ##
 
-1. To start the node: `roslaunch RobotiqHandRosNode RobotiqHand_ROS_Node.py [ip address of your UR robot] 54321`
+1. To start the node: `rosrun RobotiqHandRosNode RobotiqHand_ROS_Node.py [ip_address_of_your_UR_robot] 54321`
 2. To control the gripper, simply publish messages to `RobotiqHandGripperControl` topic, check `test_gripper.py` for examples.
 
 
