@@ -7,7 +7,7 @@
         0.1.0
     </version>
     <description>
-        The RobotiqHandRosNode package
+        The robotiq_hand_ros_node package
     </description>
     <maintainer email="yrchern@gmail.com">
         Yuh-Rong Chen
