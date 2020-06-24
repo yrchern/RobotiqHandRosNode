@@ -15,7 +15,7 @@ In order to use RobotiqHandRosNode, you need to install [Universal_Robots_ROS_Dr
 
 ## Usage ##
 
-1. To start the node: `rosrun RobotiqHandRosNode RobotiqHand_ROS_Node.py [ip_address_of_your_UR_robot] 54321`
+1. To start the node: `rosrun robotiq_hand_ros_node RobotiqHand_ROS_Node.py [ip_address_of_your_UR_robot] 54321`
 2. To control the gripper, simply publish messages to `RobotiqHandGripperControl` topic, check `test_gripper.py` for examples.
 
 
