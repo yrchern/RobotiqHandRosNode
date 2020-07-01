@@ -2,7 +2,7 @@
 
 import rospy
 import sys
-from RobotiqHandRosNode.msg import GripperControl
+from robotiq_hand_ros_node.msg import GripperControl
 
 
 def check_bound(var):
@@ -31,7 +31,8 @@ def set_gripper(pub, position, speed, force):
 def main():
 
     # create a publisher
-    pub = rospy.Publisher('RobotiqHandGripperControl', GripperControl, queue_size=10)
+    pub = rospy.Publisher('RobotiqHandGripperControl',
+                          GripperControl, queue_size=10)
     # add a short delay before publisher is ready
     rospy.sleep(0.5)
 
@@ -48,6 +49,8 @@ def main():
 if __name__ == '__main__':
     rospy.init_node("set_gripper", anonymous=False)
     if len(sys.argv) < 4:
-        rospy.loginfo("Usage: rosrun RobotiqHandRosNode move_gripper.py [position] [speed] [force]")
+        rospy.loginfo(
+            "Usage: rosrun RobotiqHandRosNode move_gripper.py\
+             [position] [speed] [force]")
     else:
         main()

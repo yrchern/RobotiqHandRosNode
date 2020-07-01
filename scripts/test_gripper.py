@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import rospy
-from RobotiqHandRosNode.msg import GripperControl
+from robotiq_hand_ros_node.msg import GripperControl
 
 
 def set_gripper(pub, position, speed, force):
@@ -19,7 +19,8 @@ def set_gripper(pub, position, speed, force):
 def main():
     rospy.init_node("set_gripper", anonymous=False)
     # create a publisher
-    pub = rospy.Publisher('RobotiqHandGripperControl', GripperControl, queue_size=10)
+    pub = rospy.Publisher('RobotiqHandGripperControl',
+                          GripperControl, queue_size=10)
     # add a short delay before publisher is ready
     rospy.sleep(0.5)
 
