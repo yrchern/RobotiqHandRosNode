@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-# A Simple Gripper Node based on RobotiqHand https://github.com/TechMagicKK/RobotiqHand
+# A Simple Gripper Node based on
+# RobotiqHand https://github.com/TechMagicKK/RobotiqHand
 
 
 import rospy
@@ -8,8 +9,8 @@ import sys
 
 from RobotiqHand import RobotiqHand
 
-from RobotiqHandRosNode.msg import GripperControl
-from RobotiqHandRosNode.msg import GripperMoveResult
+from _robotiq_hand_ros_node.msg import GripperControl
+from _robotiq_hand_ros_node.msg import GripperMoveResult
 
 
 def signal_handler(sig, frame):
@@ -22,7 +23,8 @@ class RobotiqHandNode():
         self.addr = addr
         self.port = port
         self.hand = RobotiqHand()
-        rospy.loginfo("Waiting for 30 seconds for ros_control to start on the robot")
+        rospy.loginfo(
+            "Waiting for 30 seconds for ros_control to start on the robot")
         rospy.sleep(30.0)
         self.hand.connect(self.addr, int(self.port))
         self.hand.reset()
@@ -35,12 +37,14 @@ class RobotiqHandNode():
             return
         rospy.Subscriber('RobotiqHandGripperControl',
                          GripperControl, self.controller)
-        self.pub = rospy.Publisher('RobotiqHandGripperMoveResult', GripperMoveResult, queue_size=10)
+        self.pub = rospy.Publisher(
+            'RobotiqHandGripperMoveResult', GripperMoveResult, queue_size=10)
         rospy.on_shutdown(self.cleanup)
 
     def controller(self, msg):
         rospy.loginfo('Command received: position =' + str(msg.position) +
-                      ' speed = ' + str(msg.speed) + ', force = ' + str(msg.force))
+                      ' speed = ' + str(msg.speed) +
+                      ', force = ' + str(msg.force))
         self.hand.move(msg.position, msg.speed, msg.force)
         (status, position, force) = self.hand.wait_move_complete()
         position_mm = self.hand.get_position_mm(position)
@@ -51,7 +55,8 @@ class RobotiqHandNode():
         moveResult.force = force
         self.pub.publish(moveResult)
         rospy.loginfo('status =' + str(status) +
-                      ' position = {:.1f}mm, force = {:.1f}mA '.format(position_mm, force_mA))
+                      ' position = {:.1f}mm, force = {:.1f}mA '
+                      .format(position_mm, force_mA))
 
     def cleanup(self):
         rospy.loginfo("Disconnecting...")
@@ -63,7 +68,9 @@ if __name__ == '__main__':
     rospy.init_node('RobotiqHand')
     # there might be some args if launching from a launch file
     if len(sys.argv) < 3:
-        rospy.logerr("Usage: rosrun robotiq_hand_node robotiq_hand_rosnode.py [IP Addr] [Port]")
+        rospy.logerr(
+            "Usage: rosrun robotiq_hand_node robotiq_hand_rosnode.py\
+             [IP Addr] [Port]")
 
     else:
         try:
