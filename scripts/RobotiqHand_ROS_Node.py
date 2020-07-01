@@ -9,8 +9,8 @@ import sys
 
 from RobotiqHand import RobotiqHand
 
-from _robotiq_hand_ros_node.msg import GripperControl
-from _robotiq_hand_ros_node.msg import GripperMoveResult
+from robotiq_hand_ros_node.msg import GripperControl
+from robotiq_hand_ros_node.msg import GripperMoveResult
 
 
 def signal_handler(sig, frame):
